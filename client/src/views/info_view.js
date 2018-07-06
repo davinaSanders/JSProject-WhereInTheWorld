@@ -5,7 +5,7 @@ const InfoView = function (container) {
 };
 
 
-InfoView.prototype.initialise = function () {
+InfoView.prototype.start = function () {
   PubSub.subscribe('Landmark:landmark-loaded', (evt) => {
     this.display(evt.detail);
   });

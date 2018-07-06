@@ -2,7 +2,8 @@
 <html lang="en" dir="ltr">
 <head>
   <meta charset="utf-8">
-  <link rel="stylesheet" href="./css/main.css">
+  <link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet">
+  <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css"
   integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
   crossorigin=""/>
@@ -16,9 +17,11 @@
 </head>
 <h1>Where in the world is Yang?</h1>
 <body>
-  <form id="submit-form" action="index.html" method="post">
-    <input id="submit" type="submit" name="Submit" value="submit">
-  </form>
+  <div class="button" id="submit-button">
+    Found it!
+  </div>
+
+
   <div class="split-screen" id="landmark"></div>
   <div class="split-screen" id="map"></div>
 </body>

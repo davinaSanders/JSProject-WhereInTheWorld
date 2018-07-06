@@ -5,7 +5,7 @@ const LandmarkView = function (container) {
 };
 
 
-LandmarkView.prototype.initialise = function () {
+LandmarkView.prototype.start = function () {
   PubSub.subscribe('Landmark:landmark-loaded', (evt) => {
     this.display(evt.detail);
   });

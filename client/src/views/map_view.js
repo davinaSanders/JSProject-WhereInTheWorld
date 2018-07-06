@@ -4,7 +4,7 @@ const MapView = function (container) {
 this.container = container;
 };
 
-MapView.prototype.initialise = function () {
+MapView.prototype.start = function () {
   PubSub.subscribe('Landmark:landmark-loaded', (evt) => {
     this.display(evt.detail);
   });
@@ -12,6 +12,8 @@ MapView.prototype.initialise = function () {
     this.display(evt.detail);
   });
 };
+
+
 
 MapView.prototype.display = function (map) {
   const mapElement = document.createElement('div')

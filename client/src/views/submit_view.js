@@ -4,9 +4,10 @@ const SubmitView = function (container) {
   this.container = container;
 };
 
-
-submitButton.addEventListener('click', (evt) => {
-  PubSub.publish('GameView:game-delete-clicked', evt.target.value);
+SubmitView.prototype.start = function () {
+this.container.addEventListener('click', (evt) => {
+  PubSub.publish('SubmitView:answer-submitted', evt.target);
 });
+};
 
 module.exports = SubmitView;
