@@ -16,6 +16,6 @@ InfoView.prototype.display = function (landmark) {
   textBox.textContent = landmark.climate;
   this.container.appendchild(textBox);
 };
-// subscribe "Landmark:landmark-loaded" == an image of the landmark
+
 
 module.exports = InfoView;

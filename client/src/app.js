@@ -8,4 +8,7 @@ const SubmitView = require('./views/submit_view.js');
 
 document.addEventListener('DOMContentLoaded', () => {
 console.log('js loaded');
+const landmarkContainer = document.querySelector("#landmark");
+const landmarkView = new LandmarkView(landmarkContainer);
+
   });
