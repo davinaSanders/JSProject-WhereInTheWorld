@@ -14,11 +14,15 @@ const landmarkContainer = document.querySelector("#landmark");
 const landmarkView = new LandmarkView(landmarkContainer);
 landmarkView.start();
 
+const infoContainer = document.querySelector("#facts-display");
+const infoView = new InfoView(infoContainer);
+infoView.start();
+
 const submitContainer = document.querySelector("#submit-button");
 const submitView = new SubmitView(submitContainer);
 submitView.start();
 
-const landmarkURL = 'http://localhost:3000/api/landmark';
+const landmarkURL = 'http://localhost:3000/api/landmarks';
 const landmark = new Landmark(landmarkURL);
 landmark.getLandmark();
   });

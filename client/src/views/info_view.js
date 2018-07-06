@@ -15,6 +15,7 @@ InfoView.prototype.display = function (landmark) {
   const textBox = document.createElement('p')
   textBox.textContent = landmark.climate;
   this.container.appendchild(textBox);
+  PubSub.publish('InfoView:info-view', (this.container));
 };
 
 
