@@ -10,5 +10,5 @@ document.addEventListener('DOMContentLoaded', () => {
 console.log('js loaded');
 const landmarkContainer = document.querySelector("#landmark");
 const landmarkView = new LandmarkView(landmarkContainer);
-
+LandmarkView.initialise();
   });

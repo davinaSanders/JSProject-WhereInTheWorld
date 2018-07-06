@@ -1,6 +1,10 @@
 const PubSub = require('../helpers/pub_sub.js');
 
-button.addEventListener('click', (evt) => {
-  PubSub.publish('GameView:game-delete-clicked', evt.target.value);
-});
+const NextView = function (container) {
+  this.container = container;
+};
+
+
+
+
 module.exports = NextView;
