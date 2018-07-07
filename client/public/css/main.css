@@ -4,6 +4,13 @@ body{
   background-color: ghostwhite;
 }
 
+h1 {
+  font-family: 'Dosis', sans-serif;
+  padding: 0.5em 0 90px 0;
+  text-align: center;
+  margin: 0;
+}
+
 .split-screen{
   width: 50%;
 }

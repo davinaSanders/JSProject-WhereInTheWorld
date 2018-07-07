@@ -5,13 +5,13 @@ const MapView = function (element) {
 
 
 MapView.prototype.initialise = function () {
-  const myMap = L.map('map').setView([51.505, -0.09], 1);
+  const myMap = L.map('map').setView([51.505, -0.09], 1.5);
   const mapElement = document.createElement('div');
   mapElement.classList.add('hidden');
   mapElement.textContent = myMap;
   this.element.appendChild(mapElement);
 
-  const Stamen_Watercolor =
+
   L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/watercolor/{z}/{x}/{y}.{ext}', {
   	attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
   	subdomains: 'abcd',
@@ -22,8 +22,8 @@ MapView.prototype.initialise = function () {
 
   PubSub.subscribe('Landmark:landmark-loaded', data => {
     console.log(data);
-    const landmarkMarker = L.marker([data.detail.lat, data.detail.long]).addTo(myMap);
-
+    const landmarkMarker = L.marker([data.detail.lat, data.detail.long])
+    landmarkMarker.addTo(myMap);
   });
 
   const marker = L.marker();
