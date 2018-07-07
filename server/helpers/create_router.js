@@ -7,7 +7,6 @@ const createRouter = function (collection) {
   router.idsSent = [];
   collection.countDocuments().then(count => router.numDocuments =  count);
 
-
   router.get('/random-landmark', (req, res) => {
     collection.aggregate([
       {$match:{"_id":{$nin:router.idsSent}}},
