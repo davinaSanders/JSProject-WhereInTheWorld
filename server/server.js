@@ -1,7 +1,26 @@
 const express = require('express');
 const app = express();
+const path = require('path');
+const MongoClient = require('mongodb').MongoClient;
+const createRouter = require('./helpers/create_router.js');
+const parser = require('body-parser');
 
+const publicPath = path.join(__dirname, '../client/public');
+app.use(express.static(publicPath));
 
-app.listen(3000, function () { // NEW
-  console.log('App running on port 3000');
+app.use(parser.json());
+
+MongoClient.connect('mongodb://localhost:27017', (err, client) => {
+  if (err) {
+    console.error(err);
+  }
+
+  const db = client.db('where_in_the_world');
+  const landmarksCollection = db.collection('landmarks');
+  const landmarksRouter = createRouter(landmarksCollection)
+  app.use('/api/landmarks', landmarksRouter);
+});
+
+app.listen(3000, function () {
+  console.log(`Listening on port ${ this.address().port }`);
 });
