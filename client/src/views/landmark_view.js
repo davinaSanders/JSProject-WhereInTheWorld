@@ -12,10 +12,10 @@ LandmarkView.prototype.initialise = function () {
 };
 
 LandmarkView.prototype.display = function (landmark) {
+  this.container.innerHTML = " ";
   const image = document.createElement('img')
-  image.src = landmark.file_name;
-  this.container.appendchild(image);
+  image.src = `./images/${landmark.image}`;
+  this.container.appendChild(image);
 };
-// subscribe "Landmark:landmark-loaded" == an image of the landmark
 
 module.exports = LandmarkView;

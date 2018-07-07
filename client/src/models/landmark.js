@@ -10,10 +10,9 @@ Landmark.prototype.getLandmark = function () {
   const request = new Request(this.url);
   request.get()
     .then((landmark) => {
-      console.log(landmark);
       PubSub.publish('Landmark:landmark-loaded', landmark);
     })
-    .catch(console.error);
+    .catch((err) => console.error(err));
 };
 
 module.exports = Landmark;
