@@ -4,15 +4,21 @@ db.dropDatabase();
 db.landmarks.insertMany([
   {
     name: "Edinburgh Castle",
-    image: "Edinburgh Castle.png"
+    image: "Edinburgh Castle.png",
+    lat: 55.9486,
+    long: -3.1999
   },
   {
     name: "Mount Rushmore",
-    image: "Mount Rushmore.png"
+    image: "Mount Rushmore.png",
+    lat: 43.8791,
+    long: -103.4591
   },
   {
     name: "Egyptian Pyramids",
-    image: "Pyramid.png"
+    image: "Pyramid.png",
+    lat: 29.9773,
+    long: 31.1325
   }
   // {
   //   name: "Arc de Triomphe"
