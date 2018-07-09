@@ -38,9 +38,10 @@ Map.prototype.initialise = function () {
   const icon = new Icon({iconUrl: './images/leaf-green.png'});
 
   const marker = L.marker();
-
+  let mouseClicked = false;
   const onEachFeature = function(feature, layer) {
     const handleClick = (event) => {
+      console.log("mouseclicked", mouseClicked);
       const popup = new L.popup().setContent(feature.properties.name);
       marker
       .setLatLng(event.latlng)
@@ -48,21 +49,23 @@ Map.prototype.initialise = function () {
       .bindPopup(popup)
       .openPopup()
       .addTo(myMap);
-
     };
 
     const handleMouseOver = () => {
       layer.setStyle({
-        "opacity": 0.9,
+        "opacity": 1,
         "weight": 4
       });
     };
 
-    const handleMouseOut = () => {
-      layer.setStyle({
-        "fillOpacity": 0,
-        "weight": 0
-      });
+    const handleMouseOut = (event) => {
+      console.log("mouseout", mouseClicked);
+      if(!mouseClicked){
+        layer.setStyle({
+          "fillOpacity": 0,
+          "weight": 0
+        });
+      }
     };
 
     layer.on({
