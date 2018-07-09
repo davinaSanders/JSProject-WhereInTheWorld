@@ -24,46 +24,44 @@ Map.prototype.initialise = function () {
   	ext: 'png'
   }).addTo(myMap);
 
-  const Icon = L.Icon.extend({
-      options: {
-          shadowUrl: './images/leaf-shadow.png',
-          iconSize:     [38, 95],
-          shadowSize:   [50, 64],
-          iconAnchor:   [22, 94],
-          shadowAnchor: [4, 62],
-          popupAnchor:  [-3, -76]
-      }
-  });
-
-  const icon = new Icon({iconUrl: './images/leaf-green.png'});
-
-  const marker = L.marker();
-  let mouseClicked = false;
+  this.selectedCountry = null;
   const onEachFeature = function(feature, layer) {
     const handleClick = (event) => {
-      console.log("mouseclicked", mouseClicked);
-      const popup = new L.popup().setContent(feature.properties.name);
-      marker
-      .setLatLng(event.latlng)
-      .setIcon(icon)
-      .bindPopup(popup)
-      .openPopup()
-      .addTo(myMap);
+      if(this.selectedCountry){
+        this.selectedCountry.setStyle({fillOpacity: 0,
+        weight: 0,
+        fillOpacity: 0})
+      }
+
+      layer.setStyle({
+        opacity: 1,
+        weight: 4,
+        fillColor:"#35Ce8d",
+        fillOpacity: 1,
+        color: "#5c946e"
+      });
+
+      layer.bindPopup(feature.properties.name).openPopup();
+      this.selectedCountry = layer;
     };
 
     const handleMouseOver = () => {
-      layer.setStyle({
-        "opacity": 1,
-        "weight": 4
-      });
+      if(layer !== this.selectedCountry){
+        layer.setStyle({
+          opacity: 1,
+          weight: 4,
+          fillColor: "#30c5ff",
+          color: "#2C7DFF",
+          fillOpacity:1
+        });
+      }
     };
 
     const handleMouseOut = (event) => {
-      console.log("mouseout", mouseClicked);
-      if(!mouseClicked){
+      if(this.selectedCountry !== layer){
         layer.setStyle({
-          "fillOpacity": 0,
-          "weight": 0
+          fillOpacity: 0,
+          weight: 0
         });
       }
     };
