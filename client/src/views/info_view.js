@@ -17,9 +17,10 @@ InfoView.prototype.initialise = function () {
 };
 
 InfoView.prototype.display = function () {
+  this.container.innerHTML= " ";
   const textBox = document.createElement('p')
-  
-  this.container.appendchild(textBox);
+  textBox.textContent='This is a test';
+  this.container.appendChild(textBox);
 };
 
 module.exports = InfoView;
