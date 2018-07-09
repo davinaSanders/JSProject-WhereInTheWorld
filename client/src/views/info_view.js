@@ -23,10 +23,12 @@ InfoView.prototype.display = function () {
   imageElement.classList.add('small-image');
   this.container.appendChild(imageElement);
 
-  this.addFact(`This is a picture of ${this.landmark.name}`, 'h2')
-  this.addFact(`Did you know ${this.landmark.landmark_fact}`, 'p')
-  this.addFact(`${this.landmark.name} is in ${this.landmark.country}`, 'p')
-  this.addFact(`${this.landmark.population} people live in ${this.landmark.country}`, 'p')
+  this.addFact(`This is a picture of ${this.landmark.name}`, 'h2');
+  this.addFact(`Did you know ${this.landmark.landmark_fact}`, 'p');
+  this.addFact(`${this.landmark.name} is in ${this.landmark.country}`, 'p');
+  this.addFact(`${this.landmark.population} people live in ${this.landmark.country}`, 'p');
+  this.addFact(`Did you know ${this.landmark.country_fact}`, 'p');
+  this.addFact(`The continent you are in is ${this.landmark.continent}`, 'p');
 };
 
 InfoView.prototype.addFact = function (text, type) {

@@ -16,6 +16,10 @@ h1 {
   width: 50%;
 }
 
+.split-screen p {
+  padding: 2%;
+}
+
 #game-space{
   display: flex;
   flex-direction: row;
@@ -60,4 +64,6 @@ transition: all 0.4s ease 0s;
 .small-image{
   max-width: 25%;
   max-height: auto;
+  border-radius: 50%;
+
 }
