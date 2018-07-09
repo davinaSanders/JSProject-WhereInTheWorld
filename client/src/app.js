@@ -1,4 +1,4 @@
-
+const Map = require("./models/map.js");
 // const InfoView = require('./views/info_view.js')
 const LandmarkView = require('./views/landmark_view.js');
 const MapView = require('./views/map_view.js');
@@ -21,4 +21,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const landmarkUrl = 'http://localhost:3000/api/landmarks/random-landmark';
   const landmark = new Landmark(landmarkUrl);
   landmark.getLandmark();
+
+  const map = new Map();
+  map.initialise();
+  
 });
