@@ -45,7 +45,7 @@ Map.prototype.initialise = function () {
     console.log(event);
     marker
     .setLatLng(event.latlng)
-    .bindPopup('You clicked the map here')
+    // .bindPopup('You clicked the map here')
     .setIcon(icon)
     .addTo(myMap);
   }

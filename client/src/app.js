@@ -6,15 +6,24 @@ const NextView = require('./views/next_view.js');
 // const ScoreView = require('./views/score_view.js');
 const SubmitView = require('./views/submit_view.js');
 const Landmark = require('./models/landmark.js');
+const PubSub = require('./helpers/pub_sub.js');
 
 document.addEventListener('DOMContentLoaded', () => {
 
   const button = document.querySelector('#action-button');
 
-  const nextView = new NextView(button);
+  const nextViewHandler =  (event) => {
+      PubSub.publish('NextView:next-clicked', {});
+  };
+
+  const submitViewHandler =  (event) => {
+      PubSub.publish('SubmitView:submit-clicked', {});
+  };
+
+  const nextView = new NextView(button, nextViewHandler, submitViewHandler);
   nextView.initialise();
 
-  const submitView = new SubmitView(button, nextView.handler);
+  const submitView = new SubmitView(button, submitViewHandler, nextViewHandler);
   submitView.initialise();
 
   const landmarkViewContainer = document.querySelector('#landmark');
