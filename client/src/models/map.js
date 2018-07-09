@@ -26,12 +26,27 @@ Map.prototype.initialise = function () {
     landmarkMarker.addTo(myMap);
   });
 
+
+  const Icon = L.Icon.extend({
+      options: {
+          shadowUrl: './images/leaf-shadow.png',
+          iconSize:     [38, 95],
+          shadowSize:   [50, 64],
+          iconAnchor:   [22, 94],
+          shadowAnchor: [4, 62],
+          popupAnchor:  [-3, -76]
+      }
+  });
+
+  const icon = new Icon({iconUrl: './images/leaf-green.png'});
+
   const marker = L.marker();
   function onMapClick(event) {
     console.log(event);
     marker
     .setLatLng(event.latlng)
     .bindPopup('You clicked the map here')
+    .setIcon(icon)
     .addTo(myMap);
   }
   myMap.on('click', onMapClick);
