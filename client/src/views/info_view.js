@@ -18,8 +18,18 @@ InfoView.prototype.initialise = function () {
 
 InfoView.prototype.display = function () {
   this.container.innerHTML= " ";
-  const textBox = document.createElement('p')
-  textBox.textContent='This is a test';
+  const imageElement = document.createElement('img');
+  imageElement.src = `./images/${this.landmark.image}`;
+  imageElement.classList.add('small-image');
+  this.container.appendChild(imageElement);
+
+  const landmarkName = document.createElement('h2');
+  const nameText = `This is a picture of ${this.landmark.name}`;
+  landmarkName.textContent = nameText;
+  this.container.appendChild(landmarkName);
+
+
+  const textBox = document.createElement('p');
   this.container.appendChild(textBox);
 };
 

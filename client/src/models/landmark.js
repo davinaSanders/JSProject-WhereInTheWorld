@@ -5,6 +5,13 @@ const Landmark = function (url) {
   this.url = url;
 };
 
+Landmark.prototype.initialise = function () {
+  this.getLandmark();
+  PubSub.subscribe('NextView:next-clicked', () => {
+    this.getLandmark();
+  });
+};
+
 
 Landmark.prototype.getLandmark = function () {
   const request = new Request(this.url);

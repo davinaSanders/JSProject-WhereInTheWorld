@@ -11,10 +11,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const button = document.querySelector('#action-button');
 
-  // const nextView = new NextView(button);
-  // nextView.initialise();
+  const nextView = new NextView(button);
+  nextView.initialise();
 
-  const submitView = new SubmitView(button);
+  const submitView = new SubmitView(button, nextView.handler);
   submitView.initialise();
 
   const landmarkViewContainer = document.querySelector('#landmark');
@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const landmarkUrl = 'http://localhost:3000/api/landmarks/random-landmark';
   const landmark = new Landmark(landmarkUrl);
-  landmark.getLandmark();
+  landmark.initialise();
 
   const map = new Map();
   map.initialise();

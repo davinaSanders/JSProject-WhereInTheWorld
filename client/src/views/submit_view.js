@@ -1,7 +1,8 @@
 const PubSub = require('../helpers/pub_sub.js');
 
-const SubmitView = function(buttonElement) {
-this.buttonElement = buttonElement;
+const SubmitView = function(buttonElement, handlerToRemove) {
+  this.buttonElement = buttonElement;
+  this.handlerToRemove = handlerToRemove;
 };
 
 SubmitView.prototype.initialise = function () {
@@ -13,12 +14,16 @@ SubmitView.prototype.initialise = function () {
 
 
 SubmitView.prototype.setup = function () {
-  this.buttonElement.onClick = null;
+  this.handler = (event) => {
+    PubSub.publish('SubmitView:submit-clicked', {});
+  };
+
+  this.buttonElement.removeEventListener('click', this.handlerToRemove);
+
+  this.buttonElement.removeChild(this.buttonElement.childNodes[0]);
   const textContent = document.createTextNode('I found Yang');
   this.buttonElement.appendChild(textContent);
-  this.buttonElement.addEventListener("click", (event) => {
-    PubSub.publish('SubmitView:submit-clicked', {});
-  });
+  this.buttonElement.addEventListener("click", this.handler);
 };
 
 

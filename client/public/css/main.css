@@ -12,6 +12,7 @@ h1 {
 }
 
 .split-screen{
+  text-align: center;
   width: 50%;
 }
 
@@ -54,4 +55,9 @@ font-size: 1.2em;
 text-shadow: 0px 0px 12px rgba(255, 255, 255, 1);
 transition: all 0.4s ease 0s;
 
+}
+
+.small-image{
+  max-width: 25%;
+  max-height: auto;
 }
