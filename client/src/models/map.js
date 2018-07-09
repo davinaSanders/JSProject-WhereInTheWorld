@@ -38,32 +38,55 @@ Map.prototype.initialise = function () {
   const icon = new Icon({iconUrl: './images/leaf-green.png'});
 
   const marker = L.marker();
-  // function onMapClick(event) {
-  //   console.log(event);
-  //   marker
-  //   .setLatLng(event.latlng)
-  //   .setIcon(icon)
-  //   .addTo(myMap);
-  // }
-  //
-  // myMap.on('click', onMapClick);
 
   const onEachFeature = function(feature, layer) {
-    layer.on('click', (event) => {
+    const handleClick = (event) => {
+      const popup = new L.popup().setContent(feature.properties.name);
       marker
       .setLatLng(event.latlng)
       .setIcon(icon)
-      .bindPopup(feature.properties.name).openPopup()
+      .bindPopup(popup)
+      .openPopup()
       .addTo(myMap);
+
+    };
+
+    const handleMouseOver = () => {
+      layer.setStyle({
+        "opacity": 0.9,
+        "weight": 4
+      });
+    };
+
+    const handleMouseOut = () => {
+      layer.setStyle({
+        "fillOpacity": 0,
+        "weight": 0
+      });
+    };
+
+    layer.on({
+      click:handleClick,
+      mouseover: handleMouseOver,
+      mouseout: handleMouseOut
     });
   };
-  L.geoJson(countryBorders(), {onEachFeature: onEachFeature, interactive:'true'}).addTo(myMap);
 
+  L.geoJson(countryBorders(), {
+    onEachFeature: onEachFeature,
+    interactive:'true',
+    style: {
+      "fillOpacity": 0,
+      "weight": 0
+    }
+    }).addTo(myMap);
+
+  this.landmarkMarker = L.marker()
   PubSub.subscribe('Landmark:landmark-loaded', data => {
-    console.log(data);
-    const landmarkMarker = L.marker([data.detail.lat, data.detail.long])
-    landmarkMarker.addTo(myMap);
+    this.landmarkMarker.setLatLng(new L.LatLng(data.detail.lat, data.detail.long));
+    this.landmarkMarker.addTo(myMap);
   });
+
 
   myMap.refresh = function(timeout){
     window.setTimeout(function(){
