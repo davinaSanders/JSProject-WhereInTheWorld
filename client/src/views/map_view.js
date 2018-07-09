@@ -1,7 +1,11 @@
 const PubSub = require('../helpers/pub_sub.js');
+const MapView = function (element) {
+  this.element = element;
+};
 
 
 MapView.prototype.initialise = function () {
+  
   const myMap = L.map('map').setView([51.505, -0.09], 1.5);
   const mapElement = document.createElement('div');
   mapElement.classList.add('hidden');
