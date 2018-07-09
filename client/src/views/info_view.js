@@ -23,14 +23,16 @@ InfoView.prototype.display = function () {
   imageElement.classList.add('small-image');
   this.container.appendChild(imageElement);
 
-  const landmarkName = document.createElement('h2');
-  const nameText = `This is a picture of ${this.landmark.name}`;
-  landmarkName.textContent = nameText;
-  this.container.appendChild(landmarkName);
+  this.addFact(`This is a picture of ${this.landmark.name}`, 'h2')
+  this.addFact(`Did you know ${this.landmark.landmark_fact}`, 'p')
+  this.addFact(`${this.landmark.name} is in ${this.landmark.country}`, 'p')
+  this.addFact(`${this.landmark.population} people live in ${this.landmark.country}`, 'p')
+};
 
-
-  const textBox = document.createElement('p');
-  this.container.appendChild(textBox);
+InfoView.prototype.addFact = function (text, type) {
+  const element = document.createElement(type);
+  element.textContent = text;
+  this.container.appendChild(element);
 };
 
 module.exports = InfoView;
