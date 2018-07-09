@@ -5,8 +5,8 @@ const LandmarkView = function (container) {
 };
 
 LandmarkView.prototype.initialise = function () {
-  PubSub.subscribe('Landmark:landmark-loaded', (event) => {
-    this.display(event.detail);
+  PubSub.subscribe('Landmark:landmark-loaded', (evt) => {
+    this.display(evt.detail);
   });
 
   const fenway = {lat: 42.345573, lng: -71.098326};
