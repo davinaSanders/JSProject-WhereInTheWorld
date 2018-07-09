@@ -33,3 +33,25 @@ img{
 #map{
     border-radius: 2%;
 }
+
+#button-wrapper {
+  text-align: center;
+}
+
+#action-button {
+color: #000 ;
+text-transform: uppercase;
+background: #60a3bc;
+padding: 20px;
+border-radius: 25px;
+display: inline-block;
+border: none;
+font-family: 'Dosis', sans-serif;
+}
+
+#action-button:hover {
+font-size: 1.2em;
+text-shadow: 0px 0px 12px rgba(255, 255, 255, 1);
+transition: all 0.4s ease 0s;
+
+}

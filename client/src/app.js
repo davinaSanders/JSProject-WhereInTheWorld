@@ -1,5 +1,5 @@
 const Map = require("./models/map.js");
-// const InfoView = require('./views/info_view.js')
+const InfoView = require('./views/info_view.js')
 const LandmarkView = require('./views/landmark_view.js');
 const MapView = require('./views/map_view.js');
 // const NextView = require('./views/next_view.js');
@@ -13,6 +13,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const landmarkView = new LandmarkView(landmarkViewContainer);
   landmarkView.initialise();
 
+  const infoView = new InfoView(landmarkViewContainer);
+  infoView.initialise();
+
   const mapViewContainer = document.querySelector('#map');
   const mapView = new MapView(mapViewContainer);
   mapView.initialise();
@@ -24,5 +27,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const map = new Map();
   map.initialise();
-  
+
 });
