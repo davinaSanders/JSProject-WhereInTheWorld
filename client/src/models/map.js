@@ -1,11 +1,18 @@
 const PubSub = require('../helpers/pub_sub.js');
+const countryBorders = require('./country_borders.js');
 const Map = function () {
 };
 
 
 Map.prototype.initialise = function () {
 
-  const myMap = L.map('map').setView([51.505, -0.09], 1.5);
+  const myMap = L.map('map', {countinuousWorld: 'false'}).setView([51.505, -0.09], 1.5);
+
+  const southWest = L.latLng(-89.98155760646617, -180),
+  northEast = L.latLng(89.99346179538875, 180);
+  const bounds = L.latLngBounds(southWest, northEast);
+  myMap.setMaxBounds(bounds);
+  
   const mapElement = document.createElement('div');
   mapElement.classList.add('hidden');
   mapElement.textContent = myMap;
@@ -19,6 +26,8 @@ Map.prototype.initialise = function () {
   	maxZoom: 16,
   	ext: 'png'
   }).addTo(myMap);
+
+  L.geoJson(countryBorders()).addTo(myMap);
 
   PubSub.subscribe('Landmark:landmark-loaded', data => {
     console.log(data);
