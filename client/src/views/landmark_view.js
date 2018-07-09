@@ -8,12 +8,6 @@ LandmarkView.prototype.initialise = function () {
   PubSub.subscribe('Landmark:landmark-loaded', (evt) => {
     this.display(evt.detail);
   });
-
-  const fenway = {lat: 42.345573, lng: -71.098326};
-  this.map = new google.maps.Map(this.container, {
-    center: fenway,
-    zoom: 14
-  });
   this.panorama = new google.maps.StreetViewPanorama(
       document.getElementById('pano'), {
         position: fenway,
