@@ -6,6 +6,11 @@ const Map = function () {
 Map.prototype.initialise = function () {
   this.reset();
   PubSub.subscribe('SubmitView:submit-clicked', () => {
+    if(this.selecteCountryName === this.landmarkCountry){
+      PubSub.publish("Map:user-correct", {});
+    } else {
+      PubSub.publish("Map:user-incorrect", {});
+    }
     this.isInteractive = false;
     this.landmarkMarker.setOpacity(1);
     this.selectedCountry.getPopup().remove();
@@ -64,6 +69,7 @@ Map.prototype.reset = function () {
 
       layer.bindPopup(feature.properties.name).openPopup();
       this.selectedCountry = layer;
+      this.selecteCountryName = feature.properties.name.toLowerCase();
     };
 
     const handleMouseOver = () => {
@@ -107,6 +113,7 @@ Map.prototype.reset = function () {
 
   this.landmarkMarker = L.marker()
   PubSub.subscribe('Landmark:landmark-loaded', data => {
+    this.landmarkCountry = data.detail.country.toLowerCase();
     this.landmarkMarker.setLatLng(new L.LatLng(data.detail.lat, data.detail.long));
     this.landmarkMarker.addTo(this.myMap).setOpacity(0);
   });
