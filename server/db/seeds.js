@@ -35,12 +35,6 @@ db.landmarks.insertMany([
     lat: 29.9773,
     long: 31.1325
   },
-  // {
-  //   name: "Arc de Triomphe"
-  // },
-  // {
-  //   name: "Victoria Falls"
-  // },
   {
     name: "Machu Picchu",
     image: "Machu Picchu.png",
@@ -52,12 +46,20 @@ db.landmarks.insertMany([
     lat: -13.163068,
     long: -72.545128
   },
-  // {
-  //   name: "CN Tower"
-  // },
+  {
+    name: "Uluru – Australia's Ayers Rock",
+    image: "Uluru.jpg",
+    landmark_fact: "The rock was created over 600 million years ago. The Aborigines have lived there for 10,000 years.",
+    country: "Australia",
+    population: "24.45 million",
+    country_fact: "A desert area known as the 'outback' covers much of the land.",
+    continent: "Oceania",
+    lat: 131.035431,
+    long: -25.34449
+  },
   {
     name: "Taj Mahal",
-    image: "Taj Mahal.png.png",
+    image: "Taj Mahal.png",
     landmark_fact: "The name Taj Mahal means 'crown of palaces'.",
     country: "India",
     population: "1.33 billion",
@@ -65,8 +67,16 @@ db.landmarks.insertMany([
     continent: "Asia",
     lat: 27.173891,
     long: 78.042068
+  },
+  {
+    name: "The Ross Ice Shelf",
+    image: "ross ice shelf.jpg",
+    landmark_fact: "The largest ice shelf in Antarctica - it is about the size of France.",
+    country: "Antarctica",
+    population: "1,000",
+    country_fact: "Antarctica is the southernmost continent on Earth.",
+    continent: "Antarctica",
+    lat:  -81.5000,
+    long: 175.0000
   }
-  // {
-  //   name: "Tower Bridge"
-  // }
 ]);
