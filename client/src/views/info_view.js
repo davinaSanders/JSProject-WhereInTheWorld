@@ -20,6 +20,7 @@ InfoView.prototype.display = function () {
   this.container.innerHTML= " ";
   const imageElement = document.createElement('img');
   imageElement.src = `./images/${this.landmark.image}`;
+  imageElement.alt = `${this.landmark.name}`;
   imageElement.classList.add('small-image');
   this.container.appendChild(imageElement);
 

@@ -10,8 +10,7 @@ const PubSub = require('./helpers/pub_sub.js');
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  const audioController = new AudioController();
-  audioController.initialise();
+
 
   const button = document.querySelector('#action-button');
 
@@ -44,6 +43,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const landmarkUrl = 'http://localhost:3000/api/landmarks/random-landmark';
   const landmark = new Landmark(landmarkUrl);
   landmark.initialise();
+
+  const audioController = new AudioController();
+  audioController.initialise();
 
   const map = new Map();
   map.initialise();

@@ -111,11 +111,15 @@ Map.prototype.reset = function () {
     }
     }).addTo(this.myMap);
 
+
+  const yangIcon = L.Icon.extend({options:{iconUrl:'/images/Yang.png'}});
+
   this.landmarkMarker = L.marker()
   PubSub.subscribe('Landmark:landmark-loaded', data => {
     this.landmarkCountry = data.detail.country.toLowerCase();
     this.landmarkMarker.setLatLng(new L.LatLng(data.detail.lat, data.detail.long));
     this.landmarkMarker.addTo(this.myMap).setOpacity(0);
+    this.landmarkMarker.setIcon(new yangIcon);
   });
 
 

@@ -15,6 +15,7 @@ LandmarkView.prototype.display = function (landmark) {
   this.container.innerHTML = " ";
   const image = document.createElement('img')
   image.src = `./images/${landmark.image}`;
+  image.alt = `${landmark.name}`;
   this.container.appendChild(image);
 };
 
