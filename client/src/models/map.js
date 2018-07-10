@@ -5,12 +5,17 @@ const Map = function () {
 
 Map.prototype.initialise = function () {
   this.reset();
+  PubSub.subscribe('SubmitView:submit-clicked', () => {
+    console.log(this.landmarkMarker);
+    console.log(this.selectedCountry);
+    this.landmarkMarker.setOpacity(1);
+    this.selectedCountry.unbindPopup();
+    this.myMap.flyTo(this.landmarkMarker.getLatLng());
+  });
   PubSub.subscribe('NextView:next-clicked', () => {
     this.reset();
   });
-
 };
-
 
 Map.prototype.reset = function () {
   if (this.myMap){
@@ -36,7 +41,7 @@ Map.prototype.reset = function () {
   	ext: 'png'
   }).addTo(this.myMap);
 
-  const onEachFeature = function(feature, layer) {
+  const onEachFeature = (feature, layer) => {
     const handleClick = (event) => {
       if(!this.selectedCountry){
         PubSub.publish('Map:initial-country-selected', {});
@@ -57,7 +62,6 @@ Map.prototype.reset = function () {
 
       layer.bindPopup(feature.properties.name).openPopup();
       this.selectedCountry = layer;
-      console.log(this.selectedCountry);
     };
 
     const handleMouseOver = () => {
@@ -100,7 +104,7 @@ Map.prototype.reset = function () {
   this.landmarkMarker = L.marker()
   PubSub.subscribe('Landmark:landmark-loaded', data => {
     this.landmarkMarker.setLatLng(new L.LatLng(data.detail.lat, data.detail.long));
-    this.landmarkMarker.addTo(this.myMap);
+    this.landmarkMarker.addTo(this.myMap).setOpacity(0);
   });
 
 
