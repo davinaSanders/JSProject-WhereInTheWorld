@@ -6,11 +6,10 @@ const Map = function () {
 Map.prototype.initialise = function () {
   this.reset();
   PubSub.subscribe('SubmitView:submit-clicked', () => {
-    console.log(this.landmarkMarker);
-    console.log(this.selectedCountry);
+    this.isInteractive = false;
     this.landmarkMarker.setOpacity(1);
     this.selectedCountry.getPopup().remove();
-    this.myMap.flyTo(this.landmarkMarker.getLatLng());
+    this.myMap.flyTo(this.landmarkMarker.getLatLng(),  3);
   });
   PubSub.subscribe('NextView:next-clicked', () => {
     this.reset();
@@ -21,6 +20,7 @@ Map.prototype.reset = function () {
   if (this.myMap){
     this.myMap.remove();
   };
+  this.isInteractive = true;
   this.myMap = L.map('map', {countinuousWorld: 'false'}).setView([51.505, -0.09], 1.5);
   const southWest = L.latLng(-89.98155760646617, -180),
   northEast = L.latLng(89.99346179538875, 180);
@@ -43,6 +43,8 @@ Map.prototype.reset = function () {
 
   const onEachFeature = (feature, layer) => {
     const handleClick = (event) => {
+      if(!this.isInteractive) return;
+
       if(!this.selectedCountry){
         PubSub.publish('Map:initial-country-selected', {});
       }
@@ -65,6 +67,7 @@ Map.prototype.reset = function () {
     };
 
     const handleMouseOver = () => {
+      if(!this.isInteractive) return;
       if(layer !== this.selectedCountry){
         layer.setStyle({
           opacity: 1,
@@ -77,6 +80,7 @@ Map.prototype.reset = function () {
     };
 
     const handleMouseOut = (event) => {
+      if(!this.isInteractive) return;
       if(this.selectedCountry !== layer){
         layer.setStyle({
           fillOpacity: 0,
