@@ -4,9 +4,8 @@ body{
   background-color: ghostwhite;
 }
 
-h1 {
+h1, h2{
   font-family: 'Dosis', sans-serif;
-  padding: 0.5em 0 90px 0;
   text-align: center;
   margin: 0;
 }
@@ -37,7 +36,7 @@ img{
 
 #map{
     border-radius: 2%;
-    
+
 }
 
 #button-wrapper {
@@ -67,4 +66,7 @@ transition: all 0.4s ease 0s;
   max-height: auto;
   border-radius: 50%;
 
+}
+p{
+  font-family: 'Dosis', sans-serif;
 }
