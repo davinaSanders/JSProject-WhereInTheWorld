@@ -9,7 +9,7 @@ Map.prototype.initialise = function () {
     console.log(this.landmarkMarker);
     console.log(this.selectedCountry);
     this.landmarkMarker.setOpacity(1);
-    this.selectedCountry.unbindPopup();
+    this.selectedCountry.getPopup().remove();
     this.myMap.flyTo(this.landmarkMarker.getLatLng());
   });
   PubSub.subscribe('NextView:next-clicked', () => {
