@@ -15,6 +15,20 @@ Map.prototype.initialise = function () {
   const mapElement = document.createElement('div');
   mapElement.classList.add('hidden');
   mapElement.textContent = myMap;
+  this.selectedCountry = null;
+
+
+  // PubSub.subscribe('NextView:next-clicked', () => {
+  //   // this.selectedCountry.setStyle({
+  //   //   fillOpacity: 0,
+  //   //   fillColor: "#30c5ff",
+  //   //   color: "#2C7DFF",
+  //   //   weight: 0
+  //   // });
+  //   myMap.load();
+  //   this.selectedCountry = null;
+  //   this.landmarkMarker.classList.add("hidden");
+  // });
 
   L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/watercolor/{z}/{x}/{y}.{ext}', {
   	attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
@@ -24,9 +38,11 @@ Map.prototype.initialise = function () {
   	ext: 'png'
   }).addTo(myMap);
 
-  this.selectedCountry = null;
   const onEachFeature = function(feature, layer) {
     const handleClick = (event) => {
+      if(!this.selectedCountry){
+        PubSub.publish('Map:initial-country-selected', {});
+      }
       if(this.selectedCountry){
         this.selectedCountry.setStyle({fillOpacity: 0,
         weight: 0,
@@ -43,6 +59,7 @@ Map.prototype.initialise = function () {
 
       layer.bindPopup(feature.properties.name).openPopup();
       this.selectedCountry = layer;
+      console.log(this.selectedCountry);
     };
 
     const handleMouseOver = () => {
