@@ -3,32 +3,30 @@ const countryBorders = require('./country_borders.js');
 const Map = function () {
 };
 
-
 Map.prototype.initialise = function () {
-  const myMap = L.map('map', {countinuousWorld: 'false'}).setView([51.505, -0.09], 1.5);
+  this.reset();
+  PubSub.subscribe('NextView:next-clicked', () => {
+    this.reset();
+  });
 
+};
+
+
+Map.prototype.reset = function () {
+  if (this.myMap){
+    this.myMap.remove();
+  };
+  this.myMap = L.map('map', {countinuousWorld: 'false'}).setView([51.505, -0.09], 1.5);
   const southWest = L.latLng(-89.98155760646617, -180),
   northEast = L.latLng(89.99346179538875, 180);
   const bounds = L.latLngBounds(southWest, northEast);
-  myMap.setMaxBounds(bounds);
+  this.myMap.setMaxBounds(bounds);
 
   const mapElement = document.createElement('div');
   mapElement.classList.add('hidden');
-  mapElement.textContent = myMap;
+  mapElement.textContent = this.myMap;
   this.selectedCountry = null;
 
-
-  // PubSub.subscribe('NextView:next-clicked', () => {
-  //   // this.selectedCountry.setStyle({
-  //   //   fillOpacity: 0,
-  //   //   fillColor: "#30c5ff",
-  //   //   color: "#2C7DFF",
-  //   //   weight: 0
-  //   // });
-  //   myMap.load();
-  //   this.selectedCountry = null;
-  //   this.landmarkMarker.classList.add("hidden");
-  // });
 
   L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/watercolor/{z}/{x}/{y}.{ext}', {
   	attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
@@ -36,7 +34,7 @@ Map.prototype.initialise = function () {
   	minZoom: 1,
   	maxZoom: 16,
   	ext: 'png'
-  }).addTo(myMap);
+  }).addTo(this.myMap);
 
   const onEachFeature = function(feature, layer) {
     const handleClick = (event) => {
@@ -97,22 +95,22 @@ Map.prototype.initialise = function () {
       "fillOpacity": 0,
       "weight": 0
     }
-    }).addTo(myMap);
+    }).addTo(this.myMap);
 
   this.landmarkMarker = L.marker()
   PubSub.subscribe('Landmark:landmark-loaded', data => {
     this.landmarkMarker.setLatLng(new L.LatLng(data.detail.lat, data.detail.long));
-    this.landmarkMarker.addTo(myMap);
+    this.landmarkMarker.addTo(this.myMap);
   });
 
 
-  myMap.refresh = function(timeout){
-    window.setTimeout(function(){
-      myMap.invalidateSize();
+  this.myMap.refresh = (timeout) => {
+    window.setTimeout(() => {
+      this.myMap.invalidateSize();
     },timeout);
   };
 
-  myMap.refresh(500);
+  this.myMap.refresh(500);
 
   PubSub.publish("Map:map-loaded", mapElement);
 };
