@@ -37,7 +37,7 @@ db.landmarks.insertMany([
   },
   {
     name: "Machu Picchu",
-    image: "Machu Picchu.png",
+    image: "Machu_Pichu.png",
     landmark_fact: "Machu Picchu is sometimes called the 'lost city' because it lay abandoned for nearly 400 years before it was re-discovered in 1911.",
     country: "Peru",
     population: "32.17 million",
@@ -48,14 +48,14 @@ db.landmarks.insertMany([
   },
   {
     name: "Uluru – Australia's Ayers Rock",
-    image: "Uluru.jpg",
+    image: "Uluru.png",
     landmark_fact: "The rock was created over 600 million years ago. The Aborigines have lived there for 10,000 years.",
     country: "Australia",
     population: "24.45 million",
     country_fact: "A desert area known as the 'outback' covers much of the land.",
     continent: "Oceania",
-    lat: 131.035431,
-    long: -25.34449
+    lat: -25.34449,
+    long: 131.035431
   },
   {
     name: "Taj Mahal",
@@ -70,7 +70,7 @@ db.landmarks.insertMany([
   },
   {
     name: "The Ross Ice Shelf",
-    image: "ross ice shelf.jpg",
+    image: "Ross_Ice_Shelf.png",
     landmark_fact: "The largest ice shelf in Antarctica - it is about the size of France.",
     country: "Antarctica",
     population: "1,000",
