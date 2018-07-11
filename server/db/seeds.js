@@ -77,6 +77,6 @@ db.landmarks.insertMany([
     country_fact: "Antarctica is the southernmost continent on Earth",
     continent: "Antarctica",
     lat:  -81.5000,
-    long: 175.0000
+    long: 150.0000
   }
 ]);

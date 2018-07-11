@@ -26,7 +26,7 @@ Map.prototype.reset = function () {
     this.myMap.remove();
   };
   this.isInteractive = true;
-  this.myMap = L.map('map', {countinuousWorld: 'false'}).setView([51.505, -0.09], 1.5);
+  this.myMap = L.map('map', {countinuousWorld: 'false'}).setView([51.505, -0.09], 1);
   const southWest = L.latLng(-89.98155760646617, -180),
   northEast = L.latLng(89.99346179538875, 180);
   const bounds = L.latLngBounds(southWest, northEast);
@@ -66,13 +66,12 @@ Map.prototype.reset = function () {
         fillOpacity: 1,
         color: "#000022"
       });
-
+      layer.bindPopup(`<p>${feature.properties.name}</p>`).openPopup();
       this.selectedCountry = layer;
       this.selecteCountryName = feature.properties.name.toLowerCase();
     };
 
     const handleMouseOver = () => {
-      layer.bindPopup(`<p>${feature.properties.name}</p>`).openPopup();
       if(!this.isInteractive) return;
       if(layer !== this.selectedCountry){
         layer.setStyle({
