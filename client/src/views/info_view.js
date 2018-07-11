@@ -26,7 +26,7 @@ InfoView.prototype.display = function () {
 
   this.addFact(`This is a picture of ${this.landmark.name}`, 'h2');
   this.addFact(`Did you know ${this.landmark.landmark_fact}`, 'p');
-  this.addFact(`${this.landmark.name} is in ${this.landmark.country}`, 'p');
+  this.addFact(`You will find ${this.landmark.name} in ${this.landmark.country}`, 'p');
   this.addFact(`${this.landmark.population} people live in ${this.landmark.country}`, 'p');
   this.addFact(`Did you know ${this.landmark.country_fact}`, 'p');
   this.addFact(`The continent you are in is ${this.landmark.continent}`, 'p');

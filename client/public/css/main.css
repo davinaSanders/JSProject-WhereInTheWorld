@@ -2,12 +2,13 @@
 body, html{
   font-family: sans-serif;
   color: #666;
-  background-color: ghostwhite;
+  background-color: #383A3F;
   width: 100%;
   height: 100%;
 }
 
 h1, h2{
+  color: #F68657;
   margin-top: 2%;
   font-family: 'Dosis', sans-serif;
   text-align: center;
@@ -78,4 +79,5 @@ transition: all 0.4s ease 0s;
 p{
   font-family: 'Dosis', sans-serif;
   margin: 2% 10%;
+  color:#F6B352;
 }
