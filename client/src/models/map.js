@@ -62,9 +62,9 @@ Map.prototype.reset = function () {
       layer.setStyle({
         opacity: 1,
         weight: 4,
-        fillColor:"#35Ce8d",
+        fillColor:"#e28413",
         fillOpacity: 1,
-        color: "#5c946e"
+        color: "#000022"
       });
 
       layer.bindPopup(feature.properties.name).openPopup();
@@ -78,8 +78,8 @@ Map.prototype.reset = function () {
         layer.setStyle({
           opacity: 1,
           weight: 4,
-          fillColor: "#30c5ff",
-          color: "#2C7DFF",
+          fillColor: "#FAFAFF",
+          color: "#CCC5B9",
           fillOpacity:1
         });
       }

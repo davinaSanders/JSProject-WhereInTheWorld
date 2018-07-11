@@ -5,8 +5,8 @@ body, html{
   background-color: #FBF5F3;
   min-height: 100vh;
   max-height: 100vh;
-  margin: 0;
-  padding: 0;
+  height:100vh;
+  overflow: hidden;
 }
 
 h1, h2{
@@ -20,6 +20,8 @@ h1, h2{
   width: 50%;
   margin-right: 1%;
   margin-left: 1%;
+  min-height: 25vh;
+  max-height:50vh;
 }
 
 .split-screen p {
@@ -29,8 +31,9 @@ h1, h2{
 #game-space{
   display: flex;
   flex-direction: row;
-  margin: 2%;
+  margin: 2% auto;
   justify-content: center;
+  max-width: 70vw;
 }
 
 img{
@@ -57,6 +60,7 @@ img{
   text-transform: uppercase;
   background: #000022;
   padding: 20px;
+  margin: 1%;
   border-radius: 25px;
   display: inline-block;
   border: none;
