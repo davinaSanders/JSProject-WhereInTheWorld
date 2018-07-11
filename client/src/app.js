@@ -13,13 +13,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   const button = document.querySelector('#action-button');
+  const instructions = document.querySelector('#instructions');
 
   const nextViewHandler =  (event) => {
-      PubSub.publish('NextView:next-clicked', {});
+    PubSub.publish('NextView:next-clicked', {});
   };
 
   const submitViewHandler =  (event) => {
-      PubSub.publish('SubmitView:submit-clicked', {});
+    instructions.style.display = 'none';
+    PubSub.publish('SubmitView:submit-clicked', {});
   };
 
   const nextView = new NextView(button, nextViewHandler, submitViewHandler);
