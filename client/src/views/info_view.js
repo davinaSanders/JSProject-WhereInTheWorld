@@ -18,11 +18,15 @@ InfoView.prototype.initialise = function () {
 
 InfoView.prototype.display = function () {
   this.container.innerHTML= " ";
+  const imageDiv = document.createElement('div');
+  imageDiv.classList.add('center');
   const imageElement = document.createElement('img');
+  imageElement.classList.add('image-border');
   imageElement.src = `./images/${this.landmark.image}`;
   imageElement.alt = `${this.landmark.name}`;
   imageElement.classList.add('small-image');
-  this.container.appendChild(imageElement);
+  imageDiv.appendChild(imageElement);
+  this.container.appendChild(imageDiv);
 
   this.addFact(`This is a picture of ${this.landmark.name}`, 'h2');
   this.addFact(`Did you know ${this.landmark.landmark_fact}`, 'p');
