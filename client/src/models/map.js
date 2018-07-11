@@ -67,12 +67,12 @@ Map.prototype.reset = function () {
         color: "#000022"
       });
 
-      layer.bindPopup(feature.properties.name).openPopup();
       this.selectedCountry = layer;
       this.selecteCountryName = feature.properties.name.toLowerCase();
     };
 
     const handleMouseOver = () => {
+      layer.bindPopup(`<p>${feature.properties.name}</p>`).openPopup();
       if(!this.isInteractive) return;
       if(layer !== this.selectedCountry){
         layer.setStyle({
